@@ -64,204 +64,277 @@ class _RegisterState extends State<Register> {
     return Scaffold(
       backgroundColor: Colors.yellow,
       key: _key,
+      appBar: AppBar(
+        title: Text(
+            "Register",
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        backgroundColor: Colors.brown[300],
+        elevation: 0,
+        leading: Icon(Icons.person_add_alt_1,color: Colors.black,),
+      ),
       body: user.status == Status.Authenticating ? Loading() : Scaffold(
-        backgroundColor: Colors.pink[50],
+        backgroundColor: Colors.white,
         body: Center(
                 child: SingleChildScrollView(
                   child: Center(
-                    child: Column(
-                      children: [
-                        Text(
-                          'Welcome to\n Chapter 3',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10.0,vertical: 0.0),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Welcome to \nChapter 3',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 30.0,
+                              fontFamily: 'NewTegomin',
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        Form(
-                          key: _formKey,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: 60,
-                              ),
-                              // CircleAvatar(
-                              //   radius: 70,
-                              //   backgroundImage: user.userModel.userImage == ''
-                              //       ? Icon(Icons.add_photo_alternate)
-                              //       : NetworkImage(user.userModel.userImage),
-                              // ),
-                              // SizedBox(
-                              //   height: 20,
-                              // ),
-                              Container(
-                                width: _screenWidth,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
+                          Form(
+                            key: _formKey,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  height: 60,
                                 ),
-                                padding: EdgeInsets.all(8),
-                                margin: EdgeInsets.all(0),
-                                child: TextFormField(
-                                  controller: _nameTextController,
-                                  decoration: InputDecoration(
-                                      hintText: "Enter Name",
-                                      prefixIcon: Icon(Icons.person)),
-                                  validator: (val) =>
-                                      val.isEmpty ? 'Enter a name' : null,
-                                  textAlignVertical: TextAlignVertical.bottom,
+                                // CircleAvatar(
+                                //   radius: 70,
+                                //   backgroundImage: user.userModel.userImage == ''
+                                //       ? Icon(Icons.add_photo_alternate)
+                                //       : NetworkImage(user.userModel.userImage),
+                                // ),
+                                // SizedBox(
+                                //   height: 20,
+                                // ),
+                                Container(
+                                  width: _screenWidth,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(0.6),
+                                      borderRadius: new BorderRadius.circular(10.0)
+                                  ),
+                                  padding: EdgeInsets.all(8),
+                                  margin: EdgeInsets.all(0),
+                                  child: TextFormField(
+                                    controller: _nameTextController,
+                                    decoration: InputDecoration(
+                                      hintText: 'Enter your Name',
+                                      border: InputBorder.none,
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                                          borderSide: BorderSide(color: Colors.blue)),
+                                      prefixIcon: Icon(Icons.person),
+                                    ),
+                                    validator: (val) =>
+                                        val.isEmpty ? 'Enter a name' : null,
+                                    textAlignVertical: TextAlignVertical.center,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Container(
-                                width: _screenWidth,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
+                                SizedBox(
+                                  height: 20,
                                 ),
-                                padding: EdgeInsets.all(8),
-                                margin: EdgeInsets.all(0),
-                                child: TextFormField(
-                                  controller: _emailTextController,
-                                  decoration: InputDecoration(
-                                      hintText: "Enter email",
-                                      prefixIcon: Icon(Icons.email)),
-                                  validator: (val) =>
-                                      val.isEmpty ? 'Enter an email' : null,
-                                  textAlignVertical: TextAlignVertical.bottom,
-                                  // net ninja
-                                  onChanged: (val) {
-                                    setState(() {
-                                      email = val;
-                                    });
-                                  },
-                                ),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              ListTile(
-                                title: TextFormField(
-                                  controller: _passwordTextController,
-                                  validator: (val) => val.length < 6
-                                      ? 'Enter a password 6+ chars long'
-                                      : null,
-                                  textAlignVertical: TextAlignVertical.bottom,
-                                  obscureText: hidePass,
-                                  // net ninja
-                                  onChanged: (val) {
-                                    setState(() {
-                                      password = val;
-                                    });
-                                  },
-                                ),
-                                trailing: IconButton(
-                                    icon: Icon(Icons.remove_red_eye),
-                                    onPressed: () {
+                                Container(
+                                  width: _screenWidth,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(0.6),
+                                      borderRadius: new BorderRadius.circular(10.0)
+                                  ),
+                                  padding: EdgeInsets.all(8),
+                                  margin: EdgeInsets.all(0),
+                                  child: TextFormField(
+                                    controller: _emailTextController,
+                                    decoration: InputDecoration(
+                                      hintText: 'Enter your Email ID',
+                                      border: InputBorder.none,
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                                          borderSide: BorderSide(color: Colors.blue)),
+                                      prefixIcon: Icon(Icons.email),
+                                    ),
+                                    validator: (val) =>
+                                        val.isEmpty ? 'Enter an email' : null,
+                                    textAlignVertical: TextAlignVertical.center,
+                                    // net ninja
+                                    onChanged: (val) {
                                       setState(() {
-                                        hidePass = !hidePass;
+                                        email = val;
                                       });
-                                    }),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              TextFormField(
-                                controller: _confirmPasswordController,
-                                validator: (val) => val.length < 6
-                                    ? 'Enter a password 6+ chars long'
-                                    : null,
-                                textAlignVertical: TextAlignVertical.bottom,
-                                obscureText: true,
-                                //onChanged: (val) {
-                                //setState(() {
-                                //password = val;
-                                //});
-                                //},
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              RaisedButton(
-                                onPressed: () async {
-                                  // net ninja
-                                  //if (_formKey.currentState.validate()) {
+                                    },
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(0.6),
+                                      borderRadius: new BorderRadius.circular(10.0)
+                                  ),
+                                  child: ListTile(
+                                    contentPadding: EdgeInsets.all(8),
+                                    title: TextFormField(
+                                      decoration: InputDecoration(
+                                        hintText: 'Enter your password',
+                                        border: InputBorder.none,
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                                            borderSide: BorderSide(color: Colors.blue)),
+                                        prefixIcon: Icon(Icons.vpn_key_rounded),
+                                      ),
+                                      controller: _passwordTextController,
+                                      validator: (val) => val.length < 6
+                                          ? 'Enter a password 6+ chars long'
+                                          : null,
+                                      textAlignVertical: TextAlignVertical.center,
+                                      obscureText: hidePass,
+                                      // net ninja
+                                      onChanged: (val) {
+                                        setState(() {
+                                          password = val;
+                                        });
+                                      },
+                                    ),
+                                    trailing: IconButton(
+                                      focusColor: Colors.red,
+                                        icon: Icon(Icons.remove_red_eye),
+                                        onPressed: () {
+                                          setState(() {
+                                            hidePass = !hidePass;
+                                          });
+                                        }),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(8),
+                                  margin: EdgeInsets.all(0.0),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(0.6),
+                                      borderRadius: new BorderRadius.circular(10.0)
+                                  ),
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                      hintText: 'Confirm your password',
+                                      border: InputBorder.none,
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                                          borderSide: BorderSide(color: Colors.blue)),
+                                      prefixIcon: Icon(Icons.vpn_key_sharp),
+                                    ),
+                                    controller: _confirmPasswordController,
+                                    validator: (val) => val.length < 6
+                                        ? 'Enter a password 6+ chars long'
+                                        : null,
+                                    textAlignVertical: TextAlignVertical.center,
+                                    obscureText: true,
+                                    //onChanged: (val) {
+                                    //setState(() {
+                                    //password = val;
+                                    //});
+                                    //},
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.white30,
+                                    elevation: 0.5,
+                                  ),
+                                  onPressed: () async {
+                                    // net ninja
+                                    //if (_formKey.currentState.validate()) {
 
-                                  if (_formKey.currentState.validate()) {
-                                    if (!await user.signUp(
-                                        _nameTextController.text,
-                                        _emailTextController.text,
-                                        _passwordTextController.text)) {
-                                      _key.currentState.showSnackBar(SnackBar(
-                                          content: Text("Sign up failed")));
-                                      return;
+                                    if (_formKey.currentState.validate()) {
+                                      if (!await user.signUp(
+                                          _nameTextController.text,
+                                          _emailTextController.text,
+                                          _passwordTextController.text)) {
+                                        _key.currentState.showSnackBar(SnackBar(
+                                            content: Text("Sign up failed")));
+                                        return;
+                                      }
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (c) => NavBar()));
                                     }
-                                    Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (c) => NavBar()));
-                                  }
 
-                                  //Random
-                                  //uploadAndSaveData();
+                                    //Random
+                                    //uploadAndSaveData();
 
-                                  /* net ninja
-                                                dynamic result = await registerWithEmailAndPassword(
-                                                    email, password);
-                                                if (result == null) {
-                                                  setState(() {
-                                                    error = 'please suppy a valid email';
+                                    /* net ninja
+                                                  dynamic result = await registerWithEmailAndPassword(
+                                                      email, password);
+                                                  if (result == null) {
+                                                    setState(() {
+                                                      error = 'please suppy a valid email';
+                                                    });
+                                                  }*/
+                                  },
+                                  child: Text(
+                                    'Register',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 17.0,
+                                    ),
+                                  ),
+                                ),
+
+                                /*RaisedButton(
+                                              onPressed: () async {
+                                                Auth auth = Auth();
+                                                User user = await auth.googleSignIn();
+                                                if (user == null) {
+                                                  _userServices.createUser({
+                                                    "name": user.displayName,
+                                                    "photo": user.photoUrl,
+                                                    "email": user.email,
+                                                    "userId": user.uid
                                                   });
-                                                }*/
-                                },
-                                child: Text('Register'),
-                              ),
-
-                              /*RaisedButton(
-                                            onPressed: () async {
-                                              Auth auth = Auth();
-                                              User user = await auth.googleSignIn();
-                                              if (user == null) {
-                                                _userServices.createUser({
-                                                  "name": user.displayName,
-                                                  "photo": user.photoUrl,
-                                                  "email": user.email,
-                                                  "userId": user.uid
-                                                });
-                                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NavBar()));
-                                              }
-                                            },
-                                            child: Text(
-                                                'Google SignIn'
-                                            ),
-                                          ),*/
-                              SizedBox(
-                                height: 15,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  widget.toggleView();
-                                },
-                                child: Text(
-                                  'I already have an account',
-                                  style: TextStyle(color: Colors.red, fontSize: 15),
+                                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NavBar()));
+                                                }
+                                              },
+                                              child: Text(
+                                                  'Google SignIn'
+                                              ),
+                                            ),*/
+                                SizedBox(
+                                  height: 15,
                                 ),
-                              ),
-                              Text(
-                                error,
-                                style: TextStyle(
-                                  color: Colors.red,
+                                InkWell(
+                                  onTap: () {
+                                    widget.toggleView();
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.all(5.0),
+                                    color: Colors.blueGrey.withOpacity(0.03),
+                                    child: Text(
+                                      'I already have an account',
+                                      style: TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 15
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              )
-                            ],
+                                Text(
+                                  error,
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),

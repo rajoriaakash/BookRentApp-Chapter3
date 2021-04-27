@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   bool showSignIn = true;
 
 
+
   void toggleView() {
     setState(() {
       showSignIn = !showSignIn;
@@ -34,6 +36,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+
+
     if(showSignIn){
       return SignIn(toggleView: toggleView);
     }else {
@@ -70,6 +74,7 @@ class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
   final _key = GlobalKey<ScaffoldState>();
   bool loading = false;
+  bool hidePass = true;
 
   String email = '';
   String password = '';
@@ -111,18 +116,21 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       key: _key,
       body:user.status == Status.Authenticating ? Loading() : Scaffold(
-      backgroundColor: Colors.pink[50],
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Sign In"),
         backgroundColor: Colors.red[300],
         elevation: 0,
         actions: [
-          FlatButton.icon(
+          TextButton.icon(
+            style: TextButton.styleFrom(
+              primary: Colors.black,
+            ),
               onPressed: () {
                 widget.toggleView();
               },
               icon: Icon(
-                  Icons.person,
+                  Icons.person_add,
                 color: Colors.white,
               ),
               label: Text(
@@ -136,98 +144,163 @@ class _SignInState extends State<SignIn> {
       ),
       body: Container(
         padding: EdgeInsets.symmetric(
-          vertical: 20,
-          horizontal: 50,
+          vertical: 5.0,
+          horizontal: 30,
         ),
         child: Form(
           key: _formKey,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                controller: _emailTextController,
-                decoration: InputDecoration(
-                  hintText: 'email'
-                ),
-                validator: (val) => val.isEmpty ? 'Enter an email' : null,
-                textAlignVertical: TextAlignVertical.bottom,
-                onChanged: (val) {
-                  setState(() {
-                    email = val;
-                  });
-                },
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                controller: _passwordTextController,
-                decoration: InputDecoration(
-                  hintText: 'password'
-                ),
-                validator: (val) => val.length < 6 ? 'Enter a password 6+ chars long' : null,
-                textAlignVertical: TextAlignVertical.bottom,
-                obscureText: true,
-                onChanged: (val) {
-                  setState(() {
-                    password = val;
-                  });
-                },
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              RaisedButton(
-                onPressed: () async {
-                  if (_formKey.currentState.validate()) {
-                    if(!await user.signIn(_emailTextController.text, _passwordTextController.text)) {
-                      _key.currentState.showSnackBar(SnackBar(content: Text(
-                          "Sign in failed")));
-                    }
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (c) => NavBar()));
-
-                    /*setState(() {
-                      loading = true;
-                    });
-                    dynamic result = await _auth.signInWithEmailAndPassword(
-                        email, password);
-                    if (result == null) {
-                      setState(() {
-                        error = 'could not find these credentials';
-                        loading = false;
-                      });
-                    }*/
-                  }
-                },
-                child:  Text(
-                  'Sign in'
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (c) => AdminSignIn()));
-
-                },
-                child: Text(
-                  'I am an admin',
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Text(
+                    'Welcome back to \nChapter 3',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 15
+                    fontSize: 30.0,
+                    fontFamily: 'NewTegomin',
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
-              Text(
-                error,
-                style:  TextStyle(
-                  color: Colors.red,
+                SizedBox(
+                  height: 20,
                 ),
-              )
-            ],
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.6),
+                    borderRadius: new BorderRadius.circular(10.0)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 2.0,horizontal: 4.0),
+                    child: TextFormField(
+                      controller: _emailTextController,
+                      decoration: InputDecoration(
+                        hintText: 'Enter your Email ID',
+                        border: InputBorder.none,
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                            borderSide: BorderSide(color: Colors.blue)),
+                        prefixIcon: Icon(Icons.email),
+                      ),
+                      validator: (val) => val.isEmpty ? 'Enter a valid email' : null,
+                      textAlignVertical: TextAlignVertical.center,
+                      onChanged: (val) {
+                        setState(() {
+                          email = val;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.6),
+                      borderRadius: new BorderRadius.circular(10.0)
+                  ),
+                    child: ListTile(
+                      contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
+                      title: TextFormField(
+                        controller: _passwordTextController,
+                        decoration: InputDecoration(
+                          hintText: 'Enter your password',
+                          border: InputBorder.none,
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                              borderSide: BorderSide(color: Colors.blue)),
+                          prefixIcon: Icon(Icons.vpn_key_rounded),
+                        ),
+                        validator: (val) => val.length < 6 ? 'Enter a password of more than 6 characters' : null,
+                        textAlignVertical: TextAlignVertical.center,
+                        obscureText: hidePass,
+                        onChanged: (val) {
+                          setState(() {
+                            password = val;
+                          });
+                        },
+                      ),
+                      trailing: IconButton(
+                          focusColor: Colors.red,
+                          icon: Icon(Icons.remove_red_eye),
+                          onPressed: () {
+                            setState(() {
+                              hidePass = !hidePass;
+                            });
+                          }),
+                    ),
+                  ),
+                SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white30,
+                    elevation: 0.5,
+                  ),
+                  onPressed: () async {
+                    if (_formKey.currentState.validate()) {
+                      if(!await user.signIn(_emailTextController.text, _passwordTextController.text)) {
+                        _key.currentState.showSnackBar(SnackBar(content: Text(
+                            "Sign in failed")));
+                      }
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (c) => NavBar()));
+
+                      /*setState(() {
+                        loading = true;
+                      });
+                      dynamic result = await _auth.signInWithEmailAndPassword(
+                          email, password);
+                      if (result == null) {
+                        setState(() {
+                          error = 'could not find these credentials';
+                          loading = false;
+                        });
+                      }*/
+                    }
+                  },
+                  child:  Text(
+                    'Sign In',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 17.0,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (c) => AdminSignIn()));
+
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10.0),
+                    color: Colors.redAccent.withOpacity(0.08),
+                    child: Text(
+                      'I am an Admin',
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 15
+                      ),
+                    ),
+                  ),
+                ),
+                Text(
+                  error,
+                  style:  TextStyle(
+                    color: Colors.red,
+                  ),
+                ),
+                SizedBox(height:34.0),
+                Image.asset(
+                    'images/contactchapter3.jpg',
+                  height: 250.0
+
+                )
+              ],
+            ),
           ),
         )
       )

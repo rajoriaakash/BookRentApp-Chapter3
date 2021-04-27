@@ -12,14 +12,13 @@ class _LoadingState extends State<Loading> {
     return MaterialApp(
       color: Colors.pink[50],
       debugShowCheckedModeBanner: false,
-      home: SafeArea(
-        child: Container(
-          child: Center(
-            child: SpinKitPouringHourglass(
-              size: 50,
-              color: Colors.brown,
-            )
-          ),
+      home: Container(
+        color: Colors.brown[100],
+        child: Center(
+          child: SpinKitPouringHourglass(
+            size: 50,
+            color: Colors.brown,
+          )
         ),
       ),
     );
