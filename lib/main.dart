@@ -24,6 +24,7 @@ import 'package:test_app/provider/product.dart';
 import 'package:test_app/provider/user.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_admob/firebase_admob.dart';
+import 'package:test_app/theme.dart';
 
 
 Future<void> main() async{
@@ -39,6 +40,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // MyAppTheme appTheme = MyAppTheme(isDark: true)
+    //   ..accent2 = Colors.white
+    //   ..bg2 = Colors.black
+    //   ..bg1 = Colors.white
+    //   ..accent1 = Colors.black
+    // ;
     return  MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: UserProvider.initialize()),
@@ -46,6 +53,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: AppProvider()),
       ],
         child: MaterialApp(
+            // theme: ThemeData.dark(),
           navigatorObservers: <NavigatorObserver>[
             observer
           ],
@@ -68,6 +76,7 @@ class ScreensController extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final user = Provider.of<UserProvider>(context);
     switch(user.status){
       case Status.Uninitialized:

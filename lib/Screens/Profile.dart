@@ -194,7 +194,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                     },
                                     decoration: InputDecoration(
                                         hintText: "Enter bio",
-                                        prefixIcon: Icon(Icons.email)),
+                                        prefixIcon: Icon(Icons.info_rounded)),
                                     validator: (val) =>
                                     val.isEmpty ? 'Enter a bio' : null,
                                     textAlignVertical: TextAlignVertical.bottom,
@@ -285,7 +285,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                       }
                                     }
                                   },
-                                  child: Text('Register'),
+                                  child: Text('Update Profile'),
                                 ),
                                 SizedBox(
                                   height: 15,

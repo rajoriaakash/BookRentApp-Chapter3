@@ -62,21 +62,23 @@ class _RegisterState extends State<Register> {
         .size
         .height;
     return Scaffold(
-      backgroundColor: Colors.yellow,
+      // backgroundColor: Colors.yellow,
       key: _key,
       appBar: AppBar(
         title: Text(
             "Register",
-          style: TextStyle(
-            color: Colors.black,
-          ),
+          // style: TextStyle(
+          //   color: Colors.black,
+          // ),
         ),
-        backgroundColor: Colors.brown[300],
+        // backgroundColor: Colors.brown[300],
         elevation: 0,
-        leading: Icon(Icons.person_add_alt_1,color: Colors.black,),
+        leading: Icon(Icons.person_add_alt_1,
+          // color: Colors.black,
+        ),
       ),
       body: user.status == Status.Authenticating ? Loading() : Scaffold(
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
         body: Center(
                 child: SingleChildScrollView(
                   child: Center(
@@ -281,7 +283,7 @@ class _RegisterState extends State<Register> {
                                   child: Text(
                                     'Register',
                                     style: TextStyle(
-                                      color: Colors.black,
+                                      // color: Colors.black,
                                       fontSize: 17.0,
                                     ),
                                   ),
@@ -314,7 +316,7 @@ class _RegisterState extends State<Register> {
                                   },
                                   child: Container(
                                     padding: EdgeInsets.all(5.0),
-                                    color: Colors.blueGrey.withOpacity(0.03),
+                                    // color: Colors.blueGrey.withOpacity(0.03),
                                     child: Text(
                                       'I already have an account',
                                       style: TextStyle(

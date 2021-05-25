@@ -692,11 +692,20 @@ class _FeaturedProductsState extends State<FeaturedProducts> {
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (c) => allBooksofAGenre(genre: widget.genre,)));
               },
-              child: IconButton(
-                icon:  Icon(
-                  Icons.ballot_rounded
-                ),
+              child: Row(
+                children: [
+                  IconButton(
+                    icon:  Icon(
+                        Icons.ballot_rounded,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Text('View All'),
+                  Icon(Icons.arrow_right_rounded),
+
+                ],
               ),
+
             ),
           ],
         )
@@ -729,7 +738,11 @@ class _perGenreState extends State<perGenre> {
               child: Container(
                   alignment: Alignment.centerLeft,
                   child: new Text(
-                      widget.genre
+                      widget.genre,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                    ),
                   )
               ),
             ),

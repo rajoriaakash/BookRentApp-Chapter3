@@ -59,9 +59,15 @@ class _HomeState extends State<Home> {
                     ),
                     accountName: Text(
                       userProvider.userModel?.name ?? "username loading...",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                     accountEmail: Text(
                       userProvider.userModel?.email ?? "email loading...",
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
                     ),
                   ),
                   Container(
@@ -87,28 +93,37 @@ class _HomeState extends State<Home> {
                                   builder: (c) => Favourites()))
                             }
                         ),
-                        ListTile(
-                          leading: Icon(
-                            Icons.bookmark_border_rounded,
-                            color: Colors.black,
-                          ),
-                          trailing: Icon(
-                            Icons.arrow_right,
-                            color: Colors.black,
-                          ),
-                          title: Text(
+                        CustomListTile(
+                            Icons.bookmark_rounded,
                             'My Orders',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                            ),
-                          ),
-                          onTap: () async {
-                            await userProvider.getOrders();
-                            Navigator.push(context, MaterialPageRoute(
-                                builder: (c) => OrdersScreen()));
-                          },
+                                () =>
+                            {
+                              Navigator.push(context, MaterialPageRoute(
+                                  builder: (c) => OrdersScreen()))
+                            }
                         ),
+                        // ListTile(
+                        //   leading: Icon(
+                        //     Icons.bookmark_border_rounded,
+                        //     color: Colors.black,
+                        //   ),
+                        //   trailing: Icon(
+                        //     Icons.arrow_right,
+                        //     color: Colors.black,
+                        //   ),
+                        //   title: Text(
+                        //     'My Orders',
+                        //     style: TextStyle(
+                        //       color: Colors.black,
+                        //       fontSize: 16,
+                        //     ),
+                        //   ),
+                        //   onTap: () async {
+                        //     await userProvider.getOrders();
+                        //     Navigator.push(context, MaterialPageRoute(
+                        //         builder: (c) => OrdersScreen()));
+                        //   },
+                        // ),
                         CustomListTile(
                             Icons.contact_support_rounded,
                             'Contact us',
@@ -167,21 +182,23 @@ class _HomeState extends State<Home> {
               title: Text(
                 'Chapter 3',
                 style: TextStyle(
+                  fontFamily: 'NewTegomin',
+                  fontWeight: FontWeight.bold,
                   color: Colors.black,
-                  fontSize: 18,
+                  fontSize: 20,
                 ),
               ),
-              actions: [
-                // IconButton(
-                //     icon: Icon(
-                //         Icons.search_rounded,
-                //         color: Colors.black,
-                //     ),
-                //     onPressed:() {
-                //       showSearch(context: context, delegate: DataSearch());
-                //     },
-                // ),
-              ]
+              // actions: [
+              //   // IconButton(
+              //   //     icon: Icon(
+              //   //         Icons.search_rounded,
+              //   //         color: Colors.black,
+              //   //     ),
+              //   //     onPressed:() {
+              //   //       showSearch(context: context, delegate: DataSearch());
+              //   //     },
+              //   // ),
+              // ]
           ),
 
           backgroundColor: Colors.pink[50],
@@ -218,7 +235,7 @@ class _HomeState extends State<Home> {
                                     builder: (c) => ProductSearchScreen()));
                               },
                               decoration: InputDecoration(
-                                hintText: "blazer, dress...",
+                                hintText: "Search here",
                                 border: InputBorder.none,
                               ),
                             ),
@@ -254,7 +271,7 @@ class _HomeState extends State<Home> {
                                   width: MediaQuery
                                       .of(context)
                                       .size
-                                      .width * 0.97,
+                                      .width * 1,
                                   child: Column(
 
                                     children: [
@@ -288,7 +305,11 @@ class _HomeState extends State<Home> {
                                                 Text(
                                                     'Welcome ${userProvider
                                                         .userModel
-                                                        .name}! \nLet us pick a book for you!'
+                                                        .name} ! \nLet us pick a book for you !',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontSize: 17
+                                                  ),
                                                   // userProvider.userModel.bio
                                                 )
                                               ],
@@ -312,9 +333,19 @@ class _HomeState extends State<Home> {
 
                                           height: 100,
                                           width: 350,
-                                          child: Center(
-                                            child: Text(
-                                                'Quiz'
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Center(
+                                              child: ListTile(
+                                                leading: Icon(Icons.list_alt_rounded),
+                                                title: Text(
+                                                    'Go for a Quiz',
+                                                  style: TextStyle(
+                                                    fontSize: 16
+                                                  ),
+                                                ),
+                                                trailing: Icon(Icons.arrow_forward_ios_rounded),
+                                              ),
                                             ),
                                           ),
                                           decoration: BoxDecoration(
@@ -347,9 +378,16 @@ class _HomeState extends State<Home> {
                                         //Photo by Daniel Schludi on Unsplash
                                         child: Container(
                                           height: 100,
-                                          child: Center(
-                                            child: Text(
-                                                'Recommendations'
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Center(
+                                              child: ListTile(
+                                                leading: Icon(Icons.recommend),
+                                                title: Text(
+                                                    'Recommendations'
+                                                ),
+                                                trailing: Icon(Icons.arrow_forward_ios_rounded),
+                                              ),
                                             ),
                                           ),
                                           width: 350,
@@ -381,9 +419,16 @@ class _HomeState extends State<Home> {
                                           child: Container(
                                             height: 100,
                                             width: 350,
-                                            child: Center(
-                                              child: Text(
-                                                  'Best Sellers'
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Center(
+                                                child: ListTile(
+                                                  leading: Icon(Icons.star_border_rounded),
+                                                  title: Text(
+                                                      'Best Sellers'
+                                                  ),
+                                                  trailing: Icon(Icons.arrow_forward_ios_rounded),
+                                                ),
                                               ),
                                             ),
                                             decoration: BoxDecoration(

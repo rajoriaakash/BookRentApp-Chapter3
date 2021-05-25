@@ -75,6 +75,7 @@ class _SignInState extends State<SignIn> {
   final _key = GlobalKey<ScaffoldState>();
   bool loading = false;
   bool hidePass = true;
+  bool eyeColor = false;
 
   String email = '';
   String password = '';
@@ -116,27 +117,27 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       key: _key,
       body:user.status == Status.Authenticating ? Loading() : Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Sign In"),
-        backgroundColor: Colors.red[300],
+        // backgroundColor: Colors.red[300],
         elevation: 0,
         actions: [
           TextButton.icon(
             style: TextButton.styleFrom(
-              primary: Colors.black,
+              // primary: Colors.black,
             ),
               onPressed: () {
                 widget.toggleView();
               },
               icon: Icon(
                   Icons.person_add,
-                color: Colors.white,
+                // color: Colors.white,
               ),
               label: Text(
                 'Register',
                 style: TextStyle(
-                  color: Colors.white,
+                  // color: Colors.white,
                 ),
               )
           )
@@ -166,7 +167,7 @@ class _SignInState extends State<SignIn> {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.6),
+                    // color: Colors.white.withOpacity(0.6),
                     borderRadius: new BorderRadius.circular(10.0)
                   ),
                   child: Padding(
@@ -196,7 +197,7 @@ class _SignInState extends State<SignIn> {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.6),
+                      // color: Colors.white.withOpacity(0.6),
                       borderRadius: new BorderRadius.circular(10.0)
                   ),
                     child: ListTile(
@@ -221,10 +222,11 @@ class _SignInState extends State<SignIn> {
                         },
                       ),
                       trailing: IconButton(
-                          focusColor: Colors.red,
+                          color: eyeColor? Colors.red : Colors.white ,
                           icon: Icon(Icons.remove_red_eye),
                           onPressed: () {
                             setState(() {
+                              eyeColor = !eyeColor;
                               hidePass = !hidePass;
                             });
                           }),
@@ -262,7 +264,7 @@ class _SignInState extends State<SignIn> {
                   child:  Text(
                     'Sign In',
                     style: TextStyle(
-                      color: Colors.black,
+                      // color: Colors.black,
                       fontSize: 17.0,
                     ),
                   ),
@@ -277,7 +279,7 @@ class _SignInState extends State<SignIn> {
                   },
                   child: Container(
                     padding: EdgeInsets.all(10.0),
-                    color: Colors.redAccent.withOpacity(0.08),
+                    // color: Colors.redAccent.withOpacity(0.08),
                     child: Text(
                       'I am an Admin',
                       style: TextStyle(

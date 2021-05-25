@@ -88,23 +88,30 @@ class _ProductDetailsState extends State<ProductDetails> {
         Row(
           children: [
             Expanded(
-              child: DropdownButton<String>(
-                  value: size,
-                  style: TextStyle(color: Colors.white),
-                  items: widget.product.sizes
-                      .map<DropdownMenuItem<String>>(
-                          (value) => DropdownMenuItem(
-                              value: value,
-                              child: Text(value,
-                                  style: TextStyle(
-                                    color: Colors.red,
-                                  ))))
-                      .toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      size = value;
-                    });
-                  }),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 20.0),
+                child: DropdownButton<String>(
+                  icon: Icon(
+                      Icons.keyboard_arrow_down_rounded),
+                    iconSize: 20.0,
+                    value: size,
+                    style: TextStyle(color: Colors.white),
+                    items: widget.product.sizes
+                        .map<DropdownMenuItem<String>>(
+                            (value) => DropdownMenuItem(
+                                value: value,
+                                child: Text(value,
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontSize: 15,
+                                    ))))
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        size = value;
+                      });
+                    }),
+              ),
             ),
             Expanded(child: ProdPrice()),
           ],

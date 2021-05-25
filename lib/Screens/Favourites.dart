@@ -34,11 +34,12 @@ class _FavouritesState extends State<Favourites> {
                 iconTheme: IconThemeData(color: Colors.black),
                 backgroundColor: Colors.white,
                 elevation: 1,
+                centerTitle: true,
                 title: Text(
                   "Favourites",
                   style: TextStyle(
                       color: Colors.black,
-                      fontSize: 15
+                      fontSize: 20,
                   ),
                 ),
               ),
